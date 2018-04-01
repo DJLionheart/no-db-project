@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import ContentPanel from './ContentPanel/ContentPanel';
-import Playlist from './Playlist/Playlist';
 import searchIds from './searchIds';
+import NewPlaylist from './Playlist/NewPlaylist';
 
 const baseSearchUrl = 'https://itunes.apple.com/lookup?id=';
 const baseServerUrl = '/api/gamertrax'
@@ -13,21 +13,13 @@ class Console extends Component {
     super();
         this.state = {
             tracksRetrieved: [],
-            userPlaylist: [],
-                // {
-                //     "artistName": "Jeremy Soule",
-                //     "collectionName": "The Elder Scrolls V: Skyrim (Original Game Soundtrack)",
-                //     "trackName": "Dragonborn"
-                // }
-            userInput: '',
-            playlistName: ''
+            userPlaylist: []
             
         }
-
+        //BIND METHODS
         this.addToPlaylist = this.addToPlaylist.bind(this);
         this.deleteFromPlaylist = this.deleteFromPlaylist.bind(this);
-        this.handleUserInput = this.handleUserInput.bind(this);
-        this.updateName = this.updateName.bind(this);
+
     }
         
 
@@ -39,6 +31,8 @@ class Console extends Component {
                 //First object is a collection object, not a track object.
                 const [collection, ...tracks] = res.data.results;
                 // let collection = res.data.results.filter( (val, i) => i != 0)
+                console.log(collection);
+                
                 this.setState({
                     tracksRetrieved: [...this.state.tracksRetrieved, tracks]
                 })
@@ -48,7 +42,6 @@ class Console extends Component {
         axios.get(baseServerUrl).then( res => {
             this.setState({
                 userPlaylist: res.data.playlistContent,
-                playlistName: res.data.playlistName
             })
         })
     }
@@ -58,8 +51,7 @@ class Console extends Component {
             this.setState({
                 userPlaylist: res.data.playlistContents
             })
-        })
-        
+        })    
     }
 
     deleteFromPlaylist( e ) {
@@ -68,39 +60,35 @@ class Console extends Component {
                 userPlaylist: res.data.playlistContents
             })
         })
-        //let filteredArray = this.state.userPlaylist.filter( val => val !== e );
-        
     }
+    //     //let filteredArray = this.state.userPlaylist.filter( val => val !== e );    
+    // }
 
-    handleUserInput( e ) {
-        this.setState({
-            userInput: e
-        })
-    }
+    // handleUserInput( e ) {
+    //     this.setState({
+    //         userInput: e
+    //     })
 
-    updateName() {
-        axios.put(baseServerUrl, {name: this.state.userInput}).then( res => {
-            this.setState({
-                playlistName: res.data.playlistName,
-                userInput: ''
-            })
-        })
-    }
+    // updateName() {
+    //     axios.put(baseServerUrl, {name: this.state.userInput}).then( res => {
+    //         this.setState({
+    //             playlistName: res.data.playlistName,
+    //             userInput: ''
+    //         })
+    //     })
+    // }
 
     render(){
 
-        const { tracksRetrieved, userPlaylist, playlistName } = this.state;
+        const { tracksRetrieved, userPlaylist } = this.state;
 
         return(
             <div>
                 <ContentPanel 
                 tracksRetrieved={ tracksRetrieved }
                 addToPlaylist={ this.addToPlaylist }/>
-                <Playlist 
-                playlistName={ playlistName }
-                handleUserInput={ this.handleUserInput }
-                updateName={ this.updateName }
-                playlistData={ userPlaylist }
+                <NewPlaylist 
+                userPlaylist={ userPlaylist }
                 deleteFromPlaylist={ this.deleteFromPlaylist }/>
             </div>
         )
