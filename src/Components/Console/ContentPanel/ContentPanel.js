@@ -1,7 +1,7 @@
 import React from 'react';
 import Album from './Album/Album';
 
-import { Box } from 'reactbulma';
+//import { Box, Card } from 'reactbulma';
 
 
 
@@ -11,10 +11,10 @@ const ContentPanel = (props) => {
     
     const albumMap = tracksRetrieved.map( (value, index) => {
         return (
-            <Box key={ index }>
+            <div key={ index }>
                 <Album trackData={ value }
                 addToPlaylist={ props.addToPlaylist } /> 
-            </Box>
+            </div>
         )
     })
 

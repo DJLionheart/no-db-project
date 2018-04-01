@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+//import { Container } from 'reactbulma';
 
 import ContentPanel from './ContentPanel/ContentPanel';
 import searchIds from './searchIds';
 import NewPlaylist from './Playlist/NewPlaylist';
+
+import './console.css';
 
 const baseSearchUrl = 'https://itunes.apple.com/lookup?id=';
 const baseServerUrl = '/api/gamertrax'
@@ -61,39 +64,26 @@ class Console extends Component {
             })
         })
     }
-    //     //let filteredArray = this.state.userPlaylist.filter( val => val !== e );    
-    // }
-
-    // handleUserInput( e ) {
-    //     this.setState({
-    //         userInput: e
-    //     })
-
-    // updateName() {
-    //     axios.put(baseServerUrl, {name: this.state.userInput}).then( res => {
-    //         this.setState({
-    //             playlistName: res.data.playlistName,
-    //             userInput: ''
-    //         })
-    //     })
-    // }
 
     render(){
 
         const { tracksRetrieved, userPlaylist } = this.state;
 
         return(
-            <div>
-                <ContentPanel 
-                tracksRetrieved={ tracksRetrieved }
-                addToPlaylist={ this.addToPlaylist }/>
-                <NewPlaylist 
-                userPlaylist={ userPlaylist }
-                deleteFromPlaylist={ this.deleteFromPlaylist }/>
+            <div className="console_layout">
+                <section className="content_panel">
+                    <ContentPanel 
+                    tracksRetrieved={ tracksRetrieved }
+                    addToPlaylist={ this.addToPlaylist }/>
+                </section>
+                <section className="content_panel">
+                    <NewPlaylist 
+                    userPlaylist={ userPlaylist }
+                    deleteFromPlaylist={ this.deleteFromPlaylist }/>
+                </section>
             </div>
         )
-
     }
-
 }
+
 export default Console

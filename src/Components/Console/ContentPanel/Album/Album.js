@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Tracklist from './Tracklist';
-import { Card } from 'reactbulma';
+//import { Card, Title, SubTitle } from 'reactbulma';
 import apiKey from './apiKey.js';
 
 const albumCoverUrl = 'http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=';
@@ -32,14 +32,20 @@ class Album extends Component {
         const { albumCover } = this.state;
 
         return(
-            <Card>
+            <div>
                 <img src={ albumCover } alt="album cover"/>
-                <h2>{ this.props.trackData["0"].collectionName }</h2>
-                <h4>{ `Composed by ${ this.props.trackData["0"].artistName }` }</h4>
+                <h2>
+                    { this.props.trackData["0"].collectionName }
+                </h2>
+                <h3>
+                    { `Composed by ${ this.props.trackData["0"].artistName }` }
+                </h3>
                 <Tracklist trackData={ this.props.trackData }
-                buttonFunction={ this.props.addToPlaylist }
-                btnType={'plus'}/>
-            </Card>
+                    fncType={ 'targetValue' }
+                    btnFunction={ this.props.addToPlaylist }
+                    btnType={'symbol'}
+                    btnContents={'plus'}/>
+            </div>
         )
     }
 }

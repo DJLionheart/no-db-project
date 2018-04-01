@@ -1,0 +1,12 @@
+.console_layout {
+    display: flex;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.content_panel {
+    width: 50%;
+    height: 50vh;
+    overflow: scroll;
+    
+}
+

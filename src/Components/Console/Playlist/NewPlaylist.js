@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Button, Box, Card } from 'reactbulma';
-import FontAwesome from 'react-fontawesome';
+//import { Button, Box, Card } from 'reactbulma';
 
 import Tracklist from '../ContentPanel/Album/Tracklist';
+import Button from '../../Button.js'
 
 const baseServerUrl = '/api/gamertrax';
 
@@ -14,6 +14,8 @@ class NewPlaylist extends Component {
             userInput: '',
             playlistName: '',
         }
+        //Binding
+        this.updatePlaylistName = this.updatePlaylistName.bind(this);
     }
 
     componentDidMount() {
@@ -41,28 +43,36 @@ class NewPlaylist extends Component {
 
     render() {
         const { playlistName, userInput } = this.state;
-        const { userPlaylist, deleteFromPlaylist } = this.props;
 
         return(
-            <Box className="playlist_main">
+            <div className="playlist_main">
                 <h1>{ playlistName }</h1>
                 <input placeholder="Name your playlist!"
                 onChange={ (e) => this.handleUserInput( e.target.value )}
                 value={ userInput }/>
+                <Button 
+                fncType={ 'basic' }
+                btnType={ 'symbol' }
+                btnFunction={ this.updatePlaylistName }
+                btnContents={ 'gamepad' }/>
 
-                <Button onClick={ () => this.updatePlaylistName }>
-                    <FontAwesome name='gamepad' />
-                </Button>
+                <div>
+                    <Tracklist trackData={ this.props.userPlaylist }
+                    fncType={ 'targetValue' }
+                    btnType={ 'symbol' }
+                    btnContents={ 'minus' }
+                    btnFunction={ this.props.deleteFromPlaylist }/>
 
-                <Card>
-                    <Tracklist trackData={ userPlaylist }
-                    btnType={ 'minus' }
-                    buttonFunction={ deleteFromPlaylist }/>
-
-                    <Button danger>Clear all songs</Button>
-                    <Button info>Export</Button>
-                </Card>
-            </Box>
+                    <Button
+                    fncType={ 'basic' }
+                    btnType={ 'text'}
+                    btnContents={ 'Clear all songs' }/>
+                    <Button
+                    fncType={ 'basic' }
+                    btnType={ 'text' }
+                    btnContents={ 'Export' }/>
+                </div>
+            </div>
         )
     }
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 
 import Song from './Song';
-import { Button } from 'reactbulma';
+//import { Button } from 'reactbulma';
+import './tracklist.css'
 import FontAwesome from 'react-fontawesome';
+import Button from '../../../Button'
 
 const Tracklist = (props) => {
     if( props.trackData === undefined ){
@@ -16,9 +18,12 @@ const Tracklist = (props) => {
         const trackMap = props.trackData.map( (song, inde) => {
         
         return(
-            <div key={ inde }>
+            <div className="tracklist" key={ inde }>
                 <Song trName={ song.trackName }/>
-                <Button onClick={ () => props.buttonFunction( song )}>
+                <Button btnFunction={() => props.btnFunction(song) }
+                fncType={ 'targetValue' }
+                btnType={ props.btnType }
+                btnContents={ props.btnContents }>
                     <FontAwesome name={ props.btnType } />
                 </Button>
             </div>

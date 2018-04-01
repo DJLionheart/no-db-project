@@ -9,7 +9,7 @@ const Song = (props) => {
 
     return (
         <div>
-            <p>{trName}</p>
+            <p>{ trName }</p>
         </div>
     )
 
