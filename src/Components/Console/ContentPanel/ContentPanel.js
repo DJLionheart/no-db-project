@@ -3,6 +3,8 @@ import Album from './Album/Album';
 
 import { Box } from 'reactbulma';
 
+
+
 const ContentPanel = (props) => {
     
     const { tracksRetrieved } = props;
