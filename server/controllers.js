@@ -22,6 +22,12 @@ module.exports = {
 
     // }
 
+    addTrax: (req, res) => {
+        trackContainer.push(req.body);
+        res.status(200).send(console.log('Trax added to Server'));
+        console.log(req.body);
+    },
+
     create: (req, res) => {
         playlistData.playlistContents.push(req.body);
         res.status(200).send(playlistData);

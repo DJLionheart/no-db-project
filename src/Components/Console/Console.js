@@ -16,8 +16,8 @@ class Console extends Component {
     super();
         this.state = {
             tracksRetrieved: [],
-            userPlaylist: []
-            
+            userPlaylist: [],
+            itunesDataReceived: false
         }
         //BIND METHODS
         this.addToPlaylist = this.addToPlaylist.bind(this);
@@ -29,25 +29,36 @@ class Console extends Component {
 
     componentDidMount() {
         //var { tracksRetrieved } = this.state;
-        searchIds.forEach( (id ) => {
-            axios.get(baseSearchUrl+id).then( res => {
-                //Destructuring using the spread operator to cut off the first object.
-                //First object is a collection object, not a track object.
-                const [collection, ...tracks] = res.data.results;
-                // let collection = res.data.results.filter( (val, i) => i != 0)
-                console.log(collection);
-                
-                this.setState({
-                    tracksRetrieved: [...this.state.tracksRetrieved, tracks]
+        if(!this.state.itunesDataReceived){
+            searchIds.forEach( (id ) => {
+                axios.get(baseSearchUrl+id).then( res => {
+                    //Destructuring using the spread operator to cut off the first object.
+                    //First object is a collection object, not a track object.
+                    const [collection, ...tracks] = res.data.results;
+                    // let collection = res.data.results.filter( (val, i) => i != 0)
+                    console.log(collection);
+                    
+                    this.setState({
+                        tracksRetrieved: [...this.state.tracksRetrieved, tracks]
+                    })
                 })
             })
-        })
+            
+            
+            axios.post(`${baseServerUrl}/add_trax`, this.state.tracksRetrieved).then( res => {
+                this.setState({
+                    itunesDataReceived: true
+                })
+            })
+            
+        }
 
         axios.get(baseServerUrl).then( res => {
             this.setState({
                 userPlaylist: res.data.playlistContents,
             })
         })
+        console.log(this.state.tracksRetrieved);
     }
 
     addToPlaylist( e ) {

@@ -30,6 +30,7 @@ app.use(bodyParser.json());
 // Endpoints 
 ////////
 
+app.post(`${serverUrl}/add_trax`, ctrl.addTrax);
 app.post(serverUrl, ctrl.create);
 
 
