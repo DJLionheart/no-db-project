@@ -14,7 +14,8 @@ const ContentPanel = (props) => {
         return (
             <div key={ index }>
                 <Album trackData={ value }
-                addToPlaylist={ props.addToPlaylist } /> 
+                addToPlaylist={ props.addToPlaylist }/>
+                {/* playBtn={ props.playBtn }   */}
             </div>
         )
     })

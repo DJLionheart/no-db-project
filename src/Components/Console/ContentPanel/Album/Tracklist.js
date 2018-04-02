@@ -25,11 +25,11 @@ const Tracklist = (props) => {
                 btnType={ props.btnType }
                 btnContents={ props.btnContents }
                 btnColor={ props.btnColor }/>
-                <Button btnFunction={() => props.playBtn(song) }
+                {/* <Button btnFunction={() => props.playBtn(song) }
                 fncType={ 'targetValue' }
                 btnType={ 'symbol' }
                 btnContents={ 'play' }
-                btnColor={ 'green' }/> 
+                btnColor={ 'green' }/>  */}
             </div>
         )
 

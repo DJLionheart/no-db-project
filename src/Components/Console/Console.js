@@ -16,10 +16,10 @@ class Console extends Component {
         this.state = {
             // externalSearch: false,
             tracksRetrieved: [],
-            userPlaylist: [],
-            url: '',
-            audio: new Audio(this.state.url),
-            play: false
+            userPlaylist: []
+            // url: '',
+            // audio: null,
+            // play: false
     
             
         }
@@ -27,7 +27,7 @@ class Console extends Component {
         this.addToPlaylist = this.addToPlaylist.bind(this);
         this.deleteFromPlaylist = this.deleteFromPlaylist.bind(this);
         this.clearPlaylist = this.clearPlaylist.bind(this);
-        this.togglePlay = this.togglePlay.bind(this);
+        // this.togglePlay = this.togglePlay.bind(this);
 
     }
         
@@ -73,14 +73,14 @@ class Console extends Component {
         })
     }
 
-    togglePlay( e ) {
-        this.setState({
-            play: !this.state.play,
-            url: e.previewUrl,
-            audio: new Audio(this.state.url)
-        })
-        this.state.play ? this.audio.play() : this.audio.pause();
-    }
+    // togglePlay( e ) {
+    //     this.setState({
+    //         play: !this.state.play,
+    //         url: e.previewUrl,
+    //         audio: new Audio(this.state.url)
+    //     })
+    //     this.state.play ? this.audio.play() : this.audio.pause();
+    // }
 
 
     render(){
@@ -92,16 +92,15 @@ class Console extends Component {
                 <div className="content_panel">
                     <ContentPanel 
                     tracksRetrieved={ tracksRetrieved }
-                    addToPlaylist={ this.addToPlaylist }
-                    playBnt={ this.togglePlay }/>
+                    addToPlaylist={ this.addToPlaylist }/>
+                    {/* playBtn={ this.togglePlay } */}
                 </div>
                 <div className="content_panel">
                     <NewPlaylist 
                     userPlaylist={ userPlaylist }
                     deleteFromPlaylist={ this.deleteFromPlaylist }
-                    clearPlaylist={ this.clearPlaylist }
-                    playBnt={ this.togglePlay }
-                    />
+                    clearPlaylist={ this.clearPlaylist }/>
+                    {/* playBtn={ this.togglePlay } */}
                 </div>
                 <footer>
 

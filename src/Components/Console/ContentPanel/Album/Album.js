@@ -57,7 +57,8 @@ class Album extends Component {
                     btnFunction={ this.props.addToPlaylist }
                     btnType={'symbol'}
                     btnContents={'plus'}
-                    btnColor={ 'blue' }/>
+                    btnColor={ 'blue' }
+                    playBtn={ this.props.playBtn }/>
             </div>
         )
     }
