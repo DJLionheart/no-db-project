@@ -37,29 +37,31 @@ module.exports = {
     
             searchIds.forEach( ( id ) => {
     
-                stack.push(axios.get(`${baseSearchUrl}${+id}`).then( resp => {
-                    console.log(stack);
+                stack.push(axios.get(`${baseSearchUrl}${id}`).then( resp => {
+                    // stack >>>> [getFunction1, getFunction2, getFunction 3]
                     
                     //Destructuring using the spread operator to cut off the first object.
                     //First object is a collection object, not a track object.
                 // console.log(resp);
-                    const [collection, ...tracks] = resp.data.results;               
+                    const [collection, ...tracks] = resp.data.results;
+                    trackContainer = [...trackContainer, tracks];
+                    //resp.status(200).send(resp)
+
                 }))  
             })
             
             Promise.all(stack).then( result => {
-                console.log('result', result);
-                trackContainer.push(result);
-                res.status(200).send('hello');
-
+                // trackContainer.push(result);
+                // res.status(200).send('hello');
                 
+
                 // console.log(stack);
                 // console.log(trackContainer);
                 // res.status(200).send(trackContainer);
                 
+                res.status(200).send(trackContainer);
+                iTunesDataReceived = true;
             })
-
-            iTunesDataReceived = true;
 
             // axios.all(stack).then( res => {
                 
