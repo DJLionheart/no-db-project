@@ -38,11 +38,9 @@ module.exports = {
             searchIds.forEach( ( id ) => {
     
                 stack.push(axios.get(`${baseSearchUrl}${id}`).then( resp => {
-                    // stack >>>> [getFunction1, getFunction2, getFunction 3]
                     
                     //Destructuring using the spread operator to cut off the first object.
                     //First object is a collection object, not a track object.
-                // console.log(resp);
                     const [collection, ...tracks] = resp.data.results;
                     trackContainer = [...trackContainer, tracks];
                     //resp.status(200).send(resp)
@@ -51,43 +49,29 @@ module.exports = {
             })
             
             Promise.all(stack).then( result => {
-                // trackContainer.push(result);
-                // res.status(200).send('hello');
-                
-
-                // console.log(stack);
-                // console.log(trackContainer);
-                // res.status(200).send(trackContainer);
                 
                 res.status(200).send(trackContainer);
                 iTunesDataReceived = true;
+                console.log("iTunes musical specifications calibrated... (> '-' )>");
             })
-
-            // axios.all(stack).then( res => {
                 
-
-
         } else {
             res.status(200).send(trackContainer);
-            // res.status(200).send('hello');
-        }
-
-        // res.status(200).send(trackContainer);
-        // console.log('iTunes musical specifications calibrated... (> '-' )>');
-        
+            console.log("Track data sent! <('-' <)");     
+        }   
     },
 
     create: (req, res) => {
         playlistData.playlistContents.push(req.body);
         res.status(200).send(playlistData);
-        // console.log('New track added to the Playlist, yo! (> '-' )>');
+        console.log("New track added to the Playlist, yo! (> '-' )>");
         
 
     },
 
     read: (req, res) => {
         res.status(200).send(playlistData);
-        console.log('Doz trax just got sent, word dawg. <('-' <)');
+        console.log("Playlist contents / name sent <('-' <)");
     
 
     },
@@ -104,8 +88,8 @@ module.exports = {
                 res.status(200).send(playlistData);
                 console.log("Just... Just start over... <( X_X )>");
                 break;
-            default:
-                return null;
+            // default:
+            //     return null;
         }
     },
 
@@ -116,7 +100,7 @@ module.exports = {
                 let index = i;
                 playlistData.playlistContents.splice(index, 1);
                 res.status(200).send(playlistData);
-                console.log('Yeah, dat track sucked... Out with da old, in with somma dat new, eh? <( '-' )>');
+                console.log("Yeah, dat track sucked... Out with da old, in with somma dat new, eh? <( '-' )>");
                 
             }
         })

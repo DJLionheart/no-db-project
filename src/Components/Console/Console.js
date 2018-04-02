@@ -31,9 +31,7 @@ class Console extends Component {
        
         // Pull tracks from server (iTunes API request)...
         axios.get(`${baseUrl}/load_trax`).then( res => {
-            console.log(res);
             
-
             this.setState({
                 tracksRetrieved: res.data
             })
