@@ -18,14 +18,20 @@ const baseSearchUrl = 'https://itunes.apple.com/lookup?id=';
 
 // IDs for each VGM Album
 const searchIds = [
-    //Skyrim
-    // '596951310&entity=song',
+    // Skyrim
+    '596951310&entity=song',
     
-    //There Came an Echo
-    '997471201&entity=song'
-
-    //Spelunky
-    // '787401656&entity=song'
+    // There Came an Echo
+    '997471201&entity=song',
+    
+    // Spelunky
+    '787401656&entity=song',
+        
+    // Assassin's Creed
+    '947125736&entity=song',
+        
+    // Impostor Nostalgia
+    '469318477&entity=song'
 ];
 
 ////////////

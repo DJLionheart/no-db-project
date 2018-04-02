@@ -3,7 +3,7 @@ import React from 'react';
 import Song from './Song';
 //import { Button } from 'reactbulma';
 import './tracklist.css'
-import FontAwesome from 'react-fontawesome';
+// import FontAwesome from 'react-fontawesome';
 import Button from '../../../Button'
 
 const Tracklist = (props) => {
