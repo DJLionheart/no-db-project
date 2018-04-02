@@ -8,7 +8,6 @@ import NewPlaylist from './Playlist/NewPlaylist';
 
 import './console.css';
 
-const 
 const baseSearchUrl = 'https://itunes.apple.com/lookup?id=';
 const baseServerUrl = '/api/gamertrax'
 
