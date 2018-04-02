@@ -24,9 +24,12 @@ const Tracklist = (props) => {
                 fncType={ 'targetValue' }
                 btnType={ props.btnType }
                 btnContents={ props.btnContents }
-                btnColor={ props.btnColor }>
-                    <FontAwesome name={ props.btnType } />
-                </Button>
+                btnColor={ props.btnColor }/>
+                <Button btnFunction={() => props.playBtn(song) }
+                fncType={ 'targetValue' }
+                btnType={ 'symbol' }
+                btnContents={ 'play' }
+                btnColor={ 'green' }/> 
             </div>
         )
 

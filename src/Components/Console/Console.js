@@ -16,13 +16,18 @@ class Console extends Component {
         this.state = {
             // externalSearch: false,
             tracksRetrieved: [],
-            userPlaylist: []
+            userPlaylist: [],
+            url: '',
+            audio: new Audio(this.state.url),
+            play: false
+    
             
         }
         //BIND METHODS
         this.addToPlaylist = this.addToPlaylist.bind(this);
         this.deleteFromPlaylist = this.deleteFromPlaylist.bind(this);
         this.clearPlaylist = this.clearPlaylist.bind(this);
+        this.togglePlay = this.togglePlay.bind(this);
 
     }
         
@@ -68,6 +73,16 @@ class Console extends Component {
         })
     }
 
+    togglePlay( e ) {
+        this.setState({
+            play: !this.state.play,
+            url: e.previewUrl,
+            audio: new Audio(this.state.url)
+        })
+        this.state.play ? this.audio.play() : this.audio.pause();
+    }
+
+
     render(){
 
         const { tracksRetrieved, userPlaylist } = this.state;
@@ -77,13 +92,16 @@ class Console extends Component {
                 <div className="content_panel">
                     <ContentPanel 
                     tracksRetrieved={ tracksRetrieved }
-                    addToPlaylist={ this.addToPlaylist }/>
+                    addToPlaylist={ this.addToPlaylist }
+                    playBnt={ this.togglePlay }/>
                 </div>
                 <div className="content_panel">
                     <NewPlaylist 
                     userPlaylist={ userPlaylist }
                     deleteFromPlaylist={ this.deleteFromPlaylist }
-                    clearPlaylist={ this.clearPlaylist }/>
+                    clearPlaylist={ this.clearPlaylist }
+                    playBnt={ this.togglePlay }
+                    />
                 </div>
                 <footer>
 
