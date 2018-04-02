@@ -11,30 +11,56 @@ const artist = '&artist=';
 const album = '&album=';
 const format = '&format=json';
 
+const baseServerUrl = '/api/gamertrax';
 
 class Album extends Component {
     constructor() {
         super();
         this.state = {
-            albumCover: ''
+            albumCoverUrl: '',
+            sentToServer: false,
+            albumId: null
+
         }
 
     }
 
     componentDidMount() {
-        axios.get(`${albumCoverUrl}${apiKey}${artist}${ this.props.trackData[0].artistName }${album}${ this.props.trackData[0].collectionName}${format}`).then( res => {
+        if( this.state.sentToServer === false ) {
+
+            //Search Query for LastFM API
+            axios.get(`${ albumCoverUrl }${ apiKey }${ artist }${ this.props.trackData[0].artistName }${album}${ this.props.trackData[0].collectionName }${ format }`).then( res => {
+                    const album_url = res.data.album.image[4]["#text"] 
+                    
+                    this.setState({
+                    albumCoverUrl: album_url
+                })
+
+                axios.post(`${ baseServerUrl }/album_covers`, {url: album_url}).then( res => {
+                    this.setState({
+                        albumId: +res.data,
+                        sentToServer: true
+                    });
+                });
+            });
+
+        } else {
+
+            axios.get(`${baseServerUrl}/album_covers/${ this.state.albumId }`).then( res => {
                 this.setState({
-                albumCover: res.data.album.image[4]["#text"]
+                    albumCoverUrl: res.data.url
+                })
             })
-        })
+
+        }
     }
 
     render() {
-        const { albumCover } = this.state;
+        const { albumCoverUrl } = this.state;
 
         return(
             <div className="album_container">
-                <img className="albumCover" src={ albumCover } alt="album cover"/>
+                <img className="albumCover" src={ albumCoverUrl } alt="album cover"/>
                 
                 <h2>
                     { this.props.trackData["0"].collectionName }

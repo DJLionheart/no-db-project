@@ -11,6 +11,10 @@ const searchIds = [
 
 var trackContainer = [];
 
+var albumCoverContainer = [];
+
+var albumIdCount = 0;
+
 ////////////
 ///////////////
 
@@ -30,6 +34,26 @@ module.exports = {
     getTrax: (req, res) => {
         res.status(200).send(trackContainer);
         console.log('Trax sent to app');        
+    },
+
+    addAlbumCover: (req, res) => {
+        albumCoverContainer.push({
+            url: req.body.url,
+            id: albumIdCount
+        });
+        res.status(200).send(albumCoverContainer[albumIdCount]);
+        albumIdCount++;
+        console.log(albumCoverContainer);
+        
+    },
+
+    getAlbumCover: (req, res) => {
+        let index = null;
+        albumCoverContainer.forEach( (val, i) => {
+            if( albumCoverContainer.id === +req.params.albumId ) index = i;
+        })
+        let urlToSend = albumCoverContainer[index].url
+        res.status(200).send(urlToSend);
     },
 
     create: (req, res) => {

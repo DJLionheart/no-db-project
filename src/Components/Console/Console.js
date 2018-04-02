@@ -34,10 +34,8 @@ class Console extends Component {
                 axios.get(baseSearchUrl+id).then( res => {
                     //Destructuring using the spread operator to cut off the first object.
                     //First object is a collection object, not a track object.
-                    const [collection, ...tracks] = res.data.results;
-                    // let collection = res.data.results.filter( (val, i) => i != 0)
-                    //console.log(collection);
-                    
+                    var [collection, ...tracks] = res.data.results;
+                                        
                     this.setState({
                         tracksRetrieved: [...this.state.tracksRetrieved, tracks]
                     })
