@@ -51,7 +51,7 @@ class NewPlaylist extends Component {
                 <section className="playlist_heading">
                     <h1>{ playlistName }</h1>
                 </section>
-                <section className="playlist_controls">
+                <section className="playlist_controls_top">
                     <input placeholder="Name your playlist!"
                         onChange={ (e) => this.handleUserInput( e.target.value )}
                         value={ userInput }/>
@@ -62,19 +62,20 @@ class NewPlaylist extends Component {
                         btnFunction={ this.updatePlaylistName }
                         btnContents={ 'gamepad' }/>
                 </section>
-                <div>
+                <div className="playlist_controls_bottom">
                     <Tracklist trackData={ this.props.userPlaylist }
                     fncType={ 'targetValue' }
                     btnType={ 'symbol' }
                     btnContents={ 'minus' }
                     btnColor={ 'red' }
                     btnFunction={ this.props.deleteFromPlaylist }/>
-
+                
                     <Button
                     fncType={ 'basic' }
                     btnType={ 'text'}
                     btnContents={ 'Clear all songs' }
-                    btnColor={ 'red' }/>
+                    btnColor={ 'red' }
+                    btnFunction={ this.props.clearPlaylist }/>
                 </div>
             </div>
         )

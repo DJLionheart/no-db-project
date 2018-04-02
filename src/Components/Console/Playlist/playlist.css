@@ -1,25 +1,30 @@
+.playlist_main h1 {
+    text-align: center;
+    color: white;
+}
+
 .playlist_heading {
     border-bottom: 2px black solid;
 }
 
-h1 {
-    text-align: center;
-    color: white;
-    padding: 10px;
-    
-    
-}
-
-.playlist_controls {
-    padding-top: 20px;
+.playlist_controls_top {
+    padding: 20px;
     display: flex;
     justify-content: space-around;
+    border: 1px solid black;
 
 }
 
+.playlist_controls_bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid black;
+}
 
 input {
     width: 80%;
     height: 30px;
 
 }
+

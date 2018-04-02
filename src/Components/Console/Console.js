@@ -22,6 +22,7 @@ class Console extends Component {
         //BIND METHODS
         this.addToPlaylist = this.addToPlaylist.bind(this);
         this.deleteFromPlaylist = this.deleteFromPlaylist.bind(this);
+        this.clearPlaylist = this.clearPlaylist.bind(this);
 
     }
         
@@ -44,7 +45,7 @@ class Console extends Component {
 
         axios.get(baseServerUrl).then( res => {
             this.setState({
-                userPlaylist: res.data.playlistContent,
+                userPlaylist: res.data.playlistContents,
             })
         })
     }
@@ -65,6 +66,14 @@ class Console extends Component {
         })
     }
 
+    clearPlaylist() {
+        axios.put(baseServerUrl, {clear: []}).then( res => {
+            this.setState({
+                userPlaylist: res.data.playlistContents
+            })
+        })
+    }
+
     render(){
 
         const { tracksRetrieved, userPlaylist } = this.state;
@@ -79,8 +88,12 @@ class Console extends Component {
                 <div className="content_panel">
                     <NewPlaylist 
                     userPlaylist={ userPlaylist }
-                    deleteFromPlaylist={ this.deleteFromPlaylist }/>
+                    deleteFromPlaylist={ this.deleteFromPlaylist }
+                    clearPlaylist={ this.clearPlaylist }/>
                 </div>
+                <footer>
+
+                </footer>
             </div>
         )
     }

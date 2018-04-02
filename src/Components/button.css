@@ -9,8 +9,13 @@
     align-items: center;
     font-size: 25px;
     height: 35px;
-    width: 35px
+    width: 35px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
+
+
 
 .text_button {
     height: 25px;
@@ -19,10 +24,17 @@
     align-items: center;
     font-size: 15px;
     padding: 5px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
 .blue {
     background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);
+}
+
+.icon_button:hover, .text_button:hover {
+    color: white;
 }
 
 .red {

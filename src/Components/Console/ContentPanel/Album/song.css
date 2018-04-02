@@ -1,3 +1,5 @@
 p {
     width: 160px;
+    cursor: default;
+    color: white;
 }

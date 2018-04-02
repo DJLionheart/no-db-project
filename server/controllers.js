@@ -27,10 +27,20 @@ module.exports = {
     },
 
     update: (req, res) => {
-        playlistData.playlistName = req.body.name;
-        res.status(200).send(playlistData);
-        console.log("Dey didn't like dat playlist name... It be different now...");
-        
+        switch( req.body.hasOwnProperty('name') ){
+            case true:
+                playlistData.playlistName = req.body.name;
+                res.status(200).send(playlistData);
+                console.log("Dey didn't like dat playlist name... It be different now...");
+                break;
+            case false:
+                playlistData.playlistContents = req.body.clear;
+                res.status(200).send(playlistData);
+                console.log("Just... Just start over...");
+                break;
+            default:
+                return null;
+        }
     },
 
     delete: (req, res) => {

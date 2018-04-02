@@ -30,7 +30,7 @@ const Button = (props) => {
                 case 'text':
                     return(
                         <div className={`text_button ${ props.btnColor}`}
-                        onClick={ (e) => props.btnFunction( e.target.value ) }>
+                        onClick={ () => props.btnFunction() }>
                             { props.btnContents }
                         </div>
                     )

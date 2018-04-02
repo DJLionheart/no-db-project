@@ -1,12 +1,12 @@
 .logo_container {
     display: flex;
     justify-content: space-between;
-    margin: 30px 0;
-    height: 27vh;
+    margin: 5px;
+    height: 250px;
 }
 
 img {
     border: 1px solid grey;
-    width: 30%;
+    width: 300px;
 
 }

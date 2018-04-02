@@ -5,11 +5,13 @@
 
 .content_panel {
     width: 50%;
-    height: 50vh;
-    overflow: scroll;
+    height: 65vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
     
 }
 
 /* section {
     border: 1px solid black;
 } */
+

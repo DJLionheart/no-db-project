@@ -9,7 +9,7 @@ img {
 }
 
 .album_container {
-    padding-top: 50px;
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,12 +19,14 @@ img {
     margin: 20px 0 0 0;
     text-align: center;
     background: rgba(255, 255, 255, 0.527);
-
+    cursor: default;
+    padding: 5px;
 }
 
 .album_container h3 {
     margin: 0 0 20px 0;
     text-align: center;
     background: rgba(255, 255, 255, 0.404);
-
+    cursor: default;
+    padding: 5px;
 }

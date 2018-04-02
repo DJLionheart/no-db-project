@@ -22,7 +22,7 @@ class Album extends Component {
     }
 
     componentDidMount() {
-        axios.get(`${albumCoverUrl}${apiKey}${artist}${ this.props.trackData["0"].artistName }${album}${ this.props.trackData["0"].collectionName}${format}`).then( res => {
+        axios.get(`${albumCoverUrl}${apiKey}${artist}${ this.props.trackData[0].artistName }${album}${ this.props.trackData[0].collectionName}${format}`).then( res => {
                 this.setState({
                 albumCover: res.data.album.image[4]["#text"]
             })
