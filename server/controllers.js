@@ -9,6 +9,10 @@ var playlistData = {
 var trackContainer = [];
 var iTunesDataReceived = false;
 
+albumCoverData = {
+
+}
+
 // External API:
 const baseSearchUrl = 'https://itunes.apple.com/lookup?id=';
 
@@ -60,6 +64,30 @@ module.exports = {
             console.log("Track data sent! <('-' <)");     
         }   
     },
+
+    // loadAlbumCover: (req, res) => {
+    //     let album_stack = [];
+    
+    //         searchIds.forEach( ( id ) => {
+    
+    //             stack.push(axios.get(`${baseSearchUrl}${id}`).then( resp => {
+                    
+    //                 //Destructuring using the spread operator to cut off the first object.
+    //                 //First object is a collection object, not a track object.
+    //                 const [collection, ...tracks] = resp.data.results;
+    //                 trackContainer = [...trackContainer, tracks];
+    //                 //resp.status(200).send(resp)
+
+    //             }))  
+    //         })
+            
+    //         Promise.all(stack).then( result => {
+                
+    //             res.status(200).send(trackContainer);
+    //             iTunesDataReceived = true;
+    //             console.log("iTunes musical specifications calibrated... (> '-' )>");
+    //         })  
+    // },
 
     create: (req, res) => {
         playlistData.playlistContents.push(req.body);

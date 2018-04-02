@@ -6,6 +6,8 @@ import apiKey from './apiKey.js';
 
 import './album.css'
 
+const baseUrl = '/api/gamertrax';
+
 const albumCoverUrl = 'http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=';
 const artist = '&artist=';
 const album = '&album=';
@@ -20,6 +22,14 @@ class Album extends Component {
         }
 
     }
+
+    // componentDidMount() {
+    //     axios.get(`${baseUrl}/load_album_cover`).then( res => {
+    //             this.setState({
+    //             albumCover: res.data.album.image[4]["#text"]
+    //         })
+    //     })
+    // }
 
     componentDidMount() {
         axios.get(`${albumCoverUrl}${apiKey}${artist}${ this.props.trackData[0].artistName }${album}${ this.props.trackData[0].collectionName}${format}`).then( res => {

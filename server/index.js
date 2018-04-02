@@ -34,6 +34,8 @@ app.use(bodyParser.json());
 app.get(`${serverUrl}/load_trax`, ctrl.loadTrax);
 
 
+// app.get(`${serverUrl}/load_album/cover`, ctrl.loadAlbumCover);
+
 // For retrieving the current playlist
 app.get(serverUrl, ctrl.read);
 
