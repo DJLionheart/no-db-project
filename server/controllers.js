@@ -1,13 +1,17 @@
-const axios = require('axios');
 
+const axios = require('axios');
 ////User Data///
 var playlistData = {
     playlistName: "GamerTrax Playlist",
     playlistContents: []
 }
 
+var trackContainer = [];
+
+// External API:
 const baseSearchUrl = 'https://itunes.apple.com/lookup?id=';
 
+// IDs for each VGM Album
 const searchIds = [
     //Skyrim
     // '596951310&entity=song',
@@ -19,11 +23,8 @@ const searchIds = [
     // '787401656&entity=song'
 ];
 
-var trackContainer = [];
-
 ////////////
 ///////////////
-
 
 
 module.exports = {
@@ -37,18 +38,18 @@ module.exports = {
                 const [collection, ...tracks] = res.data.results;
                                 
                 trackContainer.push(tracks);    
-                })
+                
+            })
+                //res.send(tracks);
             })
         res.status(200).send(trackContainer);
-        //console.log('Initial musical specifications calibrated... (> '-' )>');
+        console.log('iTunes musical specifications calibrated... (> '-' )>');
         
     },
 
     pullTrax: (req, res) => {
         res.status(200).send(trackContainer);
-        console.log('iTunes Track data sent! <('-' <)');
-        
-
+        console.log('Track data sent! <('-' <)');
     },
 
     create: (req, res) => {
@@ -70,12 +71,12 @@ module.exports = {
         switch( req.body.hasOwnProperty('name') ){
             case true:
                 playlistData.playlistName = req.body.name;
-                res.status(200).send(playlistData.playlistName);
+                res.status(200).send(playlistData);
                 console.log("Dey didn't like dat playlist name... It be different now... <( -_- )>");
                 break;
             case false:
                 playlistData.playlistContents = req.body.clear;
-                res.status(200).send(playlistData.playlistContents);
+                res.status(200).send(playlistData);
                 console.log("Just... Just start over... <( X_X )>");
                 break;
             default:
@@ -89,7 +90,7 @@ module.exports = {
             if( +val.trackId === +req.params.id ){
                 let index = i;
                 playlistData.playlistContents.splice(index, 1);
-                res.status(200).send(playlistData.playlistContents);
+                res.status(200).send(playlistData);
                 console.log('Yeah, dat track sucked... Out with da old, in with somma dat new, eh? <( '-' )>');
                 
             }

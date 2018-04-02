@@ -77,7 +77,7 @@ class Console extends Component {
     deleteFromPlaylist( e ) {
         axios.delete(`${baseUrl}/${e.trackId}`).then( res => {
             this.setState({
-                userPlaylist: res.data
+                userPlaylist: res.data.playlistContents
             })
         })
     }
@@ -85,7 +85,7 @@ class Console extends Component {
     clearPlaylist() {
         axios.put(baseUrl, {clear: []}).then( res => {
             this.setState({
-                userPlaylist: res.data
+                userPlaylist: res.data.playlistContents
             })
         })
     }

@@ -37,7 +37,7 @@ class NewPlaylist extends Component {
     updatePlaylistName() {
         axios.put(baseUrl, {name: this.state.userInput}).then( res => {
             this.setState({
-                playlistName: res.data,
+                playlistName: res.data.playlistName,
                 userInput: ''
             })
         })
