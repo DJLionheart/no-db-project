@@ -5,12 +5,23 @@ var playlistData = {
     playlistContents: []
 }
 
+const searchIds = [
+
+];
+
+var trackContainer = [];
+
 ////////////
 ///////////////
 
 
 
 module.exports = {
+
+    // hitExternal: (req, res) => {
+
+    // }
+
     create: (req, res) => {
         playlistData.playlistContents.push(req.body);
         res.status(200).send(playlistData);
