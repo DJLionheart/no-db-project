@@ -35,7 +35,7 @@ class Album extends Component {
         return(
             <div className="album_container">
                 <img className="albumCover" src={ albumCover } alt="album cover"/>
-                {/* <img className="albumCover" src="https://lastfm-img2.akamaized.net/i/u/300x300/b4bd90aacd8f44cc8f2848c3be3ba971.png" alt="album cover"/> */}
+                
                 <h2>
                     { this.props.trackData["0"].collectionName }
                 </h2>
