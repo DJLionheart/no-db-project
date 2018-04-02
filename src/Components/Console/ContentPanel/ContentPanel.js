@@ -9,6 +9,7 @@ const ContentPanel = (props) => {
     
     const { tracksRetrieved } = props;
     
+    
     const albumMap = tracksRetrieved.map( (value, index) => {
         return (
             <div key={ index }>

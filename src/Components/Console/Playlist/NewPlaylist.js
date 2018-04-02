@@ -7,7 +7,7 @@ import Button from '../../Button.js'
 
 import './playlist.css';
 
-const baseServerUrl = '/api/gamertrax';
+const baseUrl = '/api/gamertrax';
 
 class NewPlaylist extends Component {
     constructor() {
@@ -21,7 +21,7 @@ class NewPlaylist extends Component {
     }
 
     componentDidMount() {
-        axios.get(baseServerUrl).then( res => {
+        axios.get(baseUrl).then( res => {
             this.setState({
                 playlistName: res.data.playlistName,
             })
@@ -35,9 +35,9 @@ class NewPlaylist extends Component {
     }
 
     updatePlaylistName() {
-        axios.put(baseServerUrl, {name: this.state.userInput}).then( res => {
+        axios.put(baseUrl, {name: this.state.userInput}).then( res => {
             this.setState({
-                playlistName: res.data.playlistName,
+                playlistName: res.data,
                 userInput: ''
             })
         })

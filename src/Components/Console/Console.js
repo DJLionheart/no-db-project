@@ -3,19 +3,18 @@ import axios from 'axios';
 //import { Box } from 'reactbulma';
 
 import ContentPanel from './ContentPanel/ContentPanel';
-import searchIds from './searchIds';
+//import searchIds from './searchIds';
 import NewPlaylist from './Playlist/NewPlaylist';
 
 import './console.css';
 
-const 
-const baseSearchUrl = 'https://itunes.apple.com/lookup?id=';
-const baseServerUrl = '/api/gamertrax'
+const baseUrl = '/api/gamertrax';
 
 class Console extends Component {
     constructor() {
     super();
         this.state = {
+            externalSearch: false,
             tracksRetrieved: [],
             userPlaylist: []
             
@@ -30,29 +29,45 @@ class Console extends Component {
 
     componentDidMount() {
         //var { tracksRetrieved } = this.state;
-        searchIds.forEach( (id ) => {
-            axios.get(baseSearchUrl+id).then( res => {
-                //Destructuring using the spread operator to cut off the first object.
-                //First object is a collection object, not a track object.
-                const [collection, ...tracks] = res.data.results;
-                // let collection = res.data.results.filter( (val, i) => i != 0)
-                console.log(collection);
+        // searchIds.forEach( (id ) => {
+        //     axios.get(baseSearchUrl+id).then( res => {
+        //         //Destructuring using the spread operator to cut off the first object.
+        //         //First object is a collection object, not a track object.
+        //         const [collection, ...tracks] = res.data.results;
+        //         // let collection = res.data.results.filter( (val, i) => i != 0)
+        //         console.log(collection);
+                
+        //         this.setState({
+        //             tracksRetrieved: [...this.state.tracksRetrieved, tracks]
+        //         })
+        //     })
+        // })
+        if( !this.state.externalSearch ) {
+            axios.get(`${baseUrl}/load_trax`).then( res => {
                 
                 this.setState({
-                    tracksRetrieved: [...this.state.tracksRetrieved, tracks]
+                    tracksRetrieved: res.data,
+                    externalSearch: true
                 })
             })
-        })
+        } else {
+            axios.get(`${baseUrl}/trax`).then( res => {
+                
+                this.setState({
+                    tracksRetrieved: res.data
+                })
+            })
+        }
 
-        axios.get(baseServerUrl).then( res => {
+        axios.get(baseUrl).then( res => {
             this.setState({
-                userPlaylist: res.data.playlistContents,
+                userPlaylist: res.data.playlistContents
             })
         })
     }
 
     addToPlaylist( e ) {
-        axios.post(baseServerUrl, e).then( res => {
+        axios.post(baseUrl, e).then( res => {
             this.setState({
                 userPlaylist: res.data.playlistContents
             })
@@ -60,17 +75,17 @@ class Console extends Component {
     }
 
     deleteFromPlaylist( e ) {
-        axios.delete(`${baseServerUrl}/${e.trackId}`).then( res => {
+        axios.delete(`${baseUrl}/${e.trackId}`).then( res => {
             this.setState({
-                userPlaylist: res.data.playlistContents
+                userPlaylist: res.data
             })
         })
     }
 
     clearPlaylist() {
-        axios.put(baseServerUrl, {clear: []}).then( res => {
+        axios.put(baseUrl, {clear: []}).then( res => {
             this.setState({
-                userPlaylist: res.data.playlistContents
+                userPlaylist: res.data
             })
         })
     }

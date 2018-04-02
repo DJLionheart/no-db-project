@@ -35,7 +35,8 @@ app.post(serverUrl, ctrl.create);
 
 app.get(serverUrl, ctrl.read);
 
-app.get(`${serverUrl}/trax`, ctrl.hitExternal);
+app.get(`${serverUrl}/load_trax`, ctrl.hitExternal);
+app.get(`${serverUrl}/trax`, ctrl.pullTrax);
 
 
 app.put(serverUrl, ctrl.update);
