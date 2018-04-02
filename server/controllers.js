@@ -25,7 +25,11 @@ module.exports = {
     addTrax: (req, res) => {
         trackContainer.push(req.body);
         res.status(200).send(console.log('Trax added to Server'));
-        console.log(req.body);
+    },
+
+    getTrax: (req, res) => {
+        res.status(200).send(trackContainer);
+        console.log('Trax sent to app');        
     },
 
     create: (req, res) => {

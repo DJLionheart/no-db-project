@@ -1,12 +1,12 @@
 const searchIds = [
     //Skyrim
-    // '596951310&entity=song'
+    '596951310&entity=song',
     
     //There Came an Echo
-    '997471201&entity=song'
+    '997471201&entity=song',
 
     //Spelunky
-    // '787401656&entity=song'
+    '787401656&entity=song'
     
 ]
 

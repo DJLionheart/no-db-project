@@ -36,29 +36,32 @@ class Console extends Component {
                     //First object is a collection object, not a track object.
                     const [collection, ...tracks] = res.data.results;
                     // let collection = res.data.results.filter( (val, i) => i != 0)
-                    console.log(collection);
+                    //console.log(collection);
                     
                     this.setState({
                         tracksRetrieved: [...this.state.tracksRetrieved, tracks]
                     })
+                    axios.post(`${baseServerUrl}/add_trax`, tracks).then();
                 })
             })
-            
-            
-            axios.post(`${baseServerUrl}/add_trax`, this.state.tracksRetrieved).then( res => {
+            this.setState({
+                itunesDataReceived: true
+            })            
+        } else {
+            axios.get(`${baseServerUrl}/get_trax`).then( res => {
                 this.setState({
-                    itunesDataReceived: true
+                    tracksRetrieved: res.data.trackContainer
                 })
             })
-            
         }
 
+       
         axios.get(baseServerUrl).then( res => {
             this.setState({
                 userPlaylist: res.data.playlistContents,
             })
         })
-        console.log(this.state.tracksRetrieved);
+        
     }
 
     addToPlaylist( e ) {

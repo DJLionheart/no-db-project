@@ -30,18 +30,20 @@ app.use(bodyParser.json());
 // Endpoints 
 ////////
 
+// Initial load: store track data from iTunes API on server
 app.post(`${serverUrl}/add_trax`, ctrl.addTrax);
+
+app.get(`${serverUrl}/get_trax`, ctrl.getTrax);
+// Add track to playlist
 app.post(serverUrl, ctrl.create);
 
-
+// Retrieve current playlist
 app.get(serverUrl, ctrl.read);
 
-//app.get(`${serverUrl}/trax`, ctrl.hitExternal);
-
-
+// Either: 1. update playlist name, or 2. clear the playlist
 app.put(serverUrl, ctrl.update);
 
-
+// Remove an individual track from playlist
 app.delete(`${serverUrl}/:id`, ctrl.delete);
 
 
