@@ -28,21 +28,8 @@ class Console extends Component {
         
 
     componentDidMount() {
-        //var { tracksRetrieved } = this.state;
-        // searchIds.forEach( (id ) => {
-        //     axios.get(baseSearchUrl+id).then( res => {
-        //         //Destructuring using the spread operator to cut off the first object.
-        //         //First object is a collection object, not a track object.
-        //         const [collection, ...tracks] = res.data.results;
-        //         // let collection = res.data.results.filter( (val, i) => i != 0)
-        //         console.log(collection);
-                
-        //         this.setState({
-        //             tracksRetrieved: [...this.state.tracksRetrieved, tracks]
-        //         })
-        //     })
-        // })
-        // if( !this.state.externalSearch ) {
+       
+        // Pull tracks from server (iTunes API request)...
         axios.get(`${baseUrl}/load_trax`).then( res => {
             console.log(res);
             
