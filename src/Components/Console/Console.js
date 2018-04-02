@@ -14,7 +14,7 @@ class Console extends Component {
     constructor() {
     super();
         this.state = {
-            externalSearch: false,
+            // externalSearch: false,
             tracksRetrieved: [],
             userPlaylist: []
             
@@ -42,22 +42,15 @@ class Console extends Component {
         //         })
         //     })
         // })
-        if( !this.state.externalSearch ) {
-            axios.get(`${baseUrl}/load_trax`).then( res => {
-                
-                this.setState({
-                    tracksRetrieved: res.data,
-                    externalSearch: true
-                })
+        // if( !this.state.externalSearch ) {
+        axios.get(`${baseUrl}/load_trax`).then( res => {
+            console.log(res);
+            
+
+            this.setState({
+                tracksRetrieved: res.data
             })
-        } else {
-            axios.get(`${baseUrl}/trax`).then( res => {
-                
-                this.setState({
-                    tracksRetrieved: res.data
-                })
-            })
-        }
+        })
 
         axios.get(baseUrl).then( res => {
             this.setState({

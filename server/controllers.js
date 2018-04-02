@@ -7,6 +7,7 @@ var playlistData = {
 }
 
 var trackContainer = [];
+var iTunesDataReceived = false;
 
 // External API:
 const baseSearchUrl = 'https://itunes.apple.com/lookup?id=';
@@ -29,33 +30,55 @@ const searchIds = [
 
 module.exports = {
 
-    hitExternal: (req, res) => {
-        searchIds.forEach( (id ) => {
-            axios.get(`${baseSearchUrl}${+id}`).then( res => {
-                
-                //Destructuring using the spread operator to cut off the first object.
-                //First object is a collection object, not a track object.
-                const [collection, ...tracks] = res.data.results;
-                                
-                trackContainer.push(tracks);    
-                
-            })
-                //res.send(tracks);
-            })
-        res.status(200).send(trackContainer);
-        console.log('iTunes musical specifications calibrated... (> '-' )>');
-        
-    },
+    loadTrax: (req, res) => {
+        let stack = [];
 
-    pullTrax: (req, res) => {
-        res.status(200).send(trackContainer);
-        console.log('Track data sent! <('-' <)');
+        if( iTunesDataReceived === false ) {
+    
+            searchIds.forEach( ( id ) => {
+    
+                stack.push(axios.get(`${baseSearchUrl}${+id}`).then( resp => {
+                    console.log(stack);
+                    
+                    //Destructuring using the spread operator to cut off the first object.
+                    //First object is a collection object, not a track object.
+                // console.log(resp);
+                    const [collection, ...tracks] = resp.data.results;               
+                }))  
+            })
+            
+            Promise.all(stack).then( result => {
+                console.log('result', result);
+                trackContainer.push(result);
+                res.status(200).send('hello');
+
+                
+                // console.log(stack);
+                // console.log(trackContainer);
+                // res.status(200).send(trackContainer);
+                
+            })
+
+            iTunesDataReceived = true;
+
+            // axios.all(stack).then( res => {
+                
+
+
+        } else {
+            res.status(200).send(trackContainer);
+            // res.status(200).send('hello');
+        }
+
+        // res.status(200).send(trackContainer);
+        // console.log('iTunes musical specifications calibrated... (> '-' )>');
+        
     },
 
     create: (req, res) => {
         playlistData.playlistContents.push(req.body);
         res.status(200).send(playlistData);
-        console.log('New track added to the Playlist, yo! (> '-' )>');
+        // console.log('New track added to the Playlist, yo! (> '-' )>');
         
 
     },
