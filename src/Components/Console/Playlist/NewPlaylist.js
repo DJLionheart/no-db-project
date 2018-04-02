@@ -62,14 +62,15 @@ class NewPlaylist extends Component {
                         btnFunction={ this.updatePlaylistName }
                         btnContents={ 'gamepad' }/>
                 </section>
-                <div className="playlist_controls_bottom">
+                <div className="song_field">
                     <Tracklist trackData={ this.props.userPlaylist }
                     fncType={ 'targetValue' }
                     btnType={ 'symbol' }
                     btnContents={ 'minus' }
                     btnColor={ 'red' }
                     btnFunction={ this.props.deleteFromPlaylist }/>
-                
+                </div>
+                <div className="playlist_controls_bottom">
                     <Button
                     fncType={ 'basic' }
                     btnType={ 'text'}

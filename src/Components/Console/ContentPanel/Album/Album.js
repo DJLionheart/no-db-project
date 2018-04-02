@@ -6,7 +6,7 @@ import apiKey from './apiKey.js';
 
 import './album.css'
 
-const baseUrl = '/api/gamertrax';
+//const baseUrl = '/api/gamertrax';
 
 const albumCoverUrl = 'http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=';
 const artist = '&artist=';
