@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 //import { Button } from 'reactbulma';
+import './button.css'
 
 const Button = (props) => {
     switch( props.fncType ) {
@@ -8,9 +9,10 @@ const Button = (props) => {
             switch( props.btnType ) {
                 case 'symbol':
                     return(
-                        <button onClick={ (e) => props.btnFunction( e.target.value ) }>
+                        <div className={`icon_button ${ props.btnColor}`}
+                        onClick={ (e) => props.btnFunction( e.target.value ) }>
                             <FontAwesome name={ props.btnContents } />
-                        </button>
+                        </div>
                     )
                 default:
                     return null;
@@ -19,16 +21,18 @@ const Button = (props) => {
             switch( props.btnType) {
                 case 'symbol': 
                     return(
-                        <button onClick={ () => props.btnFunction() }>
+                        <div className={`icon_button ${ props.btnColor}`}
+                        onClick={ () => props.btnFunction() }>
                             <FontAwesome name={ props.btnContents }/>
-                        </button>
+                        </div>
                     )
                 
                 case 'text':
                     return(
-                        <button onClick={ (e) => props.btnFunction( e.target.value ) }>
+                        <div className={`text_button ${ props.btnColor}`}
+                        onClick={ (e) => props.btnFunction( e.target.value ) }>
                             { props.btnContents }
-                        </button>
+                        </div>
                     )
                 default:
                     return null;

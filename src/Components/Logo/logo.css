@@ -1,0 +1,12 @@
+.logo_container {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    height: 27vh;
+}
+
+img {
+    border: 1px solid grey;
+    width: 30%;
+
+}

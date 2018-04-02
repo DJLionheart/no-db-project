@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import { Container } from 'reactbulma';
+//import { Box } from 'reactbulma';
 
 import ContentPanel from './ContentPanel/ContentPanel';
 import searchIds from './searchIds';
@@ -71,16 +71,16 @@ class Console extends Component {
 
         return(
             <div className="console_layout">
-                <section className="content_panel">
+                <div className="content_panel">
                     <ContentPanel 
                     tracksRetrieved={ tracksRetrieved }
                     addToPlaylist={ this.addToPlaylist }/>
-                </section>
-                <section className="content_panel">
+                </div>
+                <div className="content_panel">
                     <NewPlaylist 
                     userPlaylist={ userPlaylist }
                     deleteFromPlaylist={ this.deleteFromPlaylist }/>
-                </section>
+                </div>
             </div>
         )
     }

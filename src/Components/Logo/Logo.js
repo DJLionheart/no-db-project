@@ -1,9 +1,12 @@
 import React from 'react';
 import gtlogo from './gamertrax_logo.png';
 
+import './logo.css'
 const Logo = () => {
     return (
-        <img src={gtlogo} width="300px" alt="GamerTrax logo"/>
+        <div className="logo_container">
+            <img src={gtlogo} alt="GamerTrax logo"/>
+        </div>
     )
 }
 

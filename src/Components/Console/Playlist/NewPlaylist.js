@@ -5,6 +5,8 @@ import axios from 'axios'
 import Tracklist from '../ContentPanel/Album/Tracklist';
 import Button from '../../Button.js'
 
+import './playlist.css';
+
 const baseServerUrl = '/api/gamertrax';
 
 class NewPlaylist extends Component {
@@ -46,31 +48,33 @@ class NewPlaylist extends Component {
 
         return(
             <div className="playlist_main">
-                <h1>{ playlistName }</h1>
-                <input placeholder="Name your playlist!"
-                onChange={ (e) => this.handleUserInput( e.target.value )}
-                value={ userInput }/>
-                <Button 
-                fncType={ 'basic' }
-                btnType={ 'symbol' }
-                btnFunction={ this.updatePlaylistName }
-                btnContents={ 'gamepad' }/>
-
+                <section className="playlist_heading">
+                    <h1>{ playlistName }</h1>
+                </section>
+                <section className="playlist_controls">
+                    <input placeholder="Name your playlist!"
+                        onChange={ (e) => this.handleUserInput( e.target.value )}
+                        value={ userInput }/>
+                        <Button 
+                        fncType={ 'basic' }
+                        btnType={ 'symbol' }
+                        btnColor={ 'green'}
+                        btnFunction={ this.updatePlaylistName }
+                        btnContents={ 'gamepad' }/>
+                </section>
                 <div>
                     <Tracklist trackData={ this.props.userPlaylist }
                     fncType={ 'targetValue' }
                     btnType={ 'symbol' }
                     btnContents={ 'minus' }
+                    btnColor={ 'red' }
                     btnFunction={ this.props.deleteFromPlaylist }/>
 
                     <Button
                     fncType={ 'basic' }
                     btnType={ 'text'}
-                    btnContents={ 'Clear all songs' }/>
-                    <Button
-                    fncType={ 'basic' }
-                    btnType={ 'text' }
-                    btnContents={ 'Export' }/>
+                    btnContents={ 'Clear all songs' }
+                    btnColor={ 'red' }/>
                 </div>
             </div>
         )

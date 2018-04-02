@@ -21,6 +21,7 @@ const ContentPanel = (props) => {
     return (
         <div>
             { albumMap }
+            {/* <Album/> */}
         </div>
     )
 }

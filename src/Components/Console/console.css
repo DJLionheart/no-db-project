@@ -1,6 +1,6 @@
 .console_layout {
     display: flex;
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-image: linear-gradient(to top, #5045c3 0%, #5b4fe2 1%, #2a5298 100%);
 }
 
 .content_panel {
@@ -10,3 +10,6 @@
     
 }
 
+/* section {
+    border: 1px solid black;
+} */
