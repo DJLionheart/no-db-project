@@ -16,7 +16,6 @@ class App extends Component {
  
   // componentDidMount() {
   //   axios.get(serverUrl, )
-
   // }
   render() {
     return (
